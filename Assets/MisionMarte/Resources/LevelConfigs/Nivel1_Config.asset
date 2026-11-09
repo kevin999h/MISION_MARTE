@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b413d6a12925be14cbb15321078c2774, type: 3}
+  m_Name: Nivel1_Config
+  m_EditorClassIdentifier: Assembly-CSharp::MisionMarte.LevelConfig
+  levelName: Base limpia, agua segura
+  levelIndex: 1
+  residuosRequeridos: 5
+  aguaInicial: 100
+  perdidaPorFugaPorSegundo: 0.15
+  aguaPorGota: 5
+  multiplicadorVelocidad: 1
+  tuercasParaTurbo: 10
+  pistasDisponibles: 3
+  costoPistaAgua: 0
+  mostrarConsejos: 1
+  aguaTresEstrellas: 60
+  aguaDosEstrellas: 30

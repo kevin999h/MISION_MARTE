@@ -1,0 +1,60 @@
+MISIÓN MARTE: SOBREVIVE — Previo 2 (Nivel 1 completo)
+=====================================================
+
+CÓMO USARLO (no hay que configurar nada a mano):
+1. Con tu proyecto abierto en Unity 6, haz doble clic en MisionMarte_Previo2.unitypackage
+   (o Assets > Import Package > Custom Package...) y dale "Import".
+2. Espera a que compile. El script Editor/MisionMarteBuilder.cs crea SOLO:
+     - Assets/MisionMarte/Scenes/Menu.unity    (menú + selección Ligi / Mariale)
+     - Assets/MisionMarte/Scenes/Nivel1.unity  (nivel completo)
+   y las pone en File > Build Profiles / Build Settings (Menu primero).
+3. Se abre la escena Menu. Dale PLAY.
+
+Si algo se daña o quieres regenerar: menú superior "Misión Marte > Reconstruir escenas".
+
+CONTROLES
+A/D o flechas: mover · SHIFT: correr · ESPACIO/W: saltar (mantener = más alto)
+S/CTRL: agacharse; corriendo: deslizarse · E: hablar / interactuar / cerrar válvulas
+E/ESPACIO: avanzar diálogo · ESC/P: pausa
+
+PARCHE ANTI-CAÍDAS (ya incluido, no hay que hacer nada)
+- Rigidbody2D con detección continua y sin fricción (no atraviesa el suelo ni se pega a paredes).
+- Colisionador con bordes redondeados (no se traba en las uniones de plataformas).
+- Paredes invisibles al inicio y al final del nivel.
+- Zona de caída bajo TODO el nivel + límite de altura en el script: si cae, reaparece
+  en la última baliza (checkpoint). Nunca se pierde el personaje.
+
+
+=====================================================
+SEMANA 2 — AJUSTES DE JUGABILIDAD (actualización)
+=====================================================
+CÓMO APLICARLA: copia esta carpeta Assets sobre la de tu proyecto (Reemplazar archivos) con Unity cerrado
+o abierto. No hace falta reconstruir las escenas: todo lo nuevo se crea solo al darle Play.
+Al compilar, Unity crea además los LevelConfig en Assets/MisionMarte/Resources/LevelConfigs.
+
+NUEVO
+- LevelConfig (Scripts/Data + Editor/LevelConfigCreator): parámetros de dificultad por nivel editables en el
+  Inspector (residuos requeridos, agua inicial, pérdida por fuga, agua por gota, velocidad, pistas, estrellas).
+  El Nivel 1 usa Nivel1_Config. Los de Nivel 2 y 3 ya existen, pero esas escenas todavía no están construidas.
+- Música de fondo (Scripts/Audio/AudioManager): pista del menú y pista del nivel, generadas por código, persistentes
+  entre escenas. Se suman a los efectos que ya existían (Sfx) con dos nuevos: Error y Pista.
+- Ajustes (Scripts/Settings/SettingsPanel): botón "AJUSTES [F1]" abajo a la derecha en todas las escenas.
+  Volumen de música y de efectos, silenciar, tamaño de texto (3), alto contraste, etiquetas además del color
+  y reducir vibración de cámara. Se guardan con PlayerPrefs. Esc o F1 lo cierran.
+- Retroalimentación: los mensajes emergentes cambian de color según el tipo (acierto, error, aviso, pista)
+  y con "Etiquetas además del color" muestran [OK], [ERROR], [AVISO], [PISTA]. Los errores hacen vibrar
+  el mensaje y la cámara. Aviso cuando la reserva de agua baja de 25 %.
+- Pistas con la tecla H (límite según LevelConfig): indican hacia dónde está el siguiente objetivo.
+- Optimización: CameraFollow2D ya no busca el Rigidbody2D en cada frame; los coleccionables se registran en
+  una lista para no usar Find.
+
+ARCHIVOS NUEVOS
+Scripts/Data/LevelConfig.cs · Scripts/Audio/AudioManager.cs · Scripts/Accessibility/AccessibilitySettings.cs
+Scripts/Accessibility/AccessibilityApplier.cs · Scripts/Settings/SettingsPanel.cs · Editor/LevelConfigCreator.cs
+
+ARCHIVOS MODIFICADOS
+GameHUDManager · GameInput · Sfx · GameSession · PauseMenu · MainMenu · CameraFollow2D · CollectibleItem
+Hazard · HintTrigger · Checkpoint · SpeedBoost
+
+NOTA: el tamaño de texto escala los textos de la interfaz, pero no los fragmentos con etiqueta <size=22>
+(los datos educativos pequeños dentro de los mensajes).
